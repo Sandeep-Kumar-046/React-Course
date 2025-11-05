@@ -1,0 +1,65 @@
+What is JSX ?
+    JSX means JavaScript XML.
+    JSX is a syntax used in React that allows us to write HTML-like code inside JavaScript.
+    like : const element = <h1>Hello React</h1>;
+
+Why we use JSX?
+    It makes code easier to write and understand.
+    JSX converts to normal JavaScript by React internally.
+    We can mix HTML + JavaScript logic together.
+
+Interview friendly Answer (JSX)?
+    JSX is a syntax extension in React that allows us to write HTML inside JavaScript code. 
+    React converts JSX to pure JavaScript before running it in the browser.
+
+What is Component ?
+    -> In React JS, a component is a reusable and independent block of UI.
+    -> It is like a small piece/part of the webpage that you can use multiple times.
+    In Simple Term 
+        Simple Definition
+            A component in React is a function or class that returns HTML (JSX) 
+        and controls how that part of UI should look and behave.
+    Example:-
+        function Header() {
+            return <h1>Welcome to My Website</h1>;
+        }
+
+Why we use components?
+    reusable UI.
+    easy to maintain.
+    easy to manage big application by splitting into small pieces.
+
+Types of Components
+    1. Functional Component
+    2. Class Component
+    Now in modern React → mostly we use Functional Components.
+
+Interview friendly Answer (component)?
+    ->A React component is a reusable UI element
+that returns JSX and helps to break the UI into smaller manageable pieces. 
+    ->it's lets us to create Own html element.
+
+What is Props ?
+    In React JS, props means properties.
+    Props are used to pass data from one component to another component.
+    (mainly from parent component to child component).
+
+Example:
+    function Welcome(props) {
+        return <h2>Hello, {props.name}</h2>;
+    }
+
+    function App() {
+        return <Welcome name="Sandeep" />;
+    }
+    ->Here name="Sandeep" is a prop.
+    ->Welcome component received it as props.name.
+
+Why we use props?
+    to reuse components with different data
+    to make components dynamic
+    to transfer data between components
+
+Interview Friendly Answer
+    Props in React are read-only inputs used to pass data from parent to child components. 
+    They help to make components reusable and dynamic.  
