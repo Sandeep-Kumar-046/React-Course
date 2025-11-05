@@ -1,0 +1,58 @@
+What is React ?
+    React is an open-source JavaScript library for building user interfaces.
+    React is used particularly for Developing a single-page applications.
+    React is Developed and maintained by Facebook (now Meta). 
+    In simple Terms. React is an External Library, React helps us to create Website more Easier.
+    React is differed form the two types 
+        1. Normal React - Primarly used for Developing Website 
+        2. React Native - Primarly used for Developing Mobile Apps
+
+How to Load the React External Library ?
+    Using React To create Websites 
+        -> To load the React External library & ReactDOM External library.
+    Using React To create Mobile Apps
+        -> To load the React External library & RactNative External library.
+    In this Course We can learn react for Creating Websites. So that We have to load the 2 main libraries of React. 
+        1.React - It contains all shared features that are used in Both webites and Mobile apps.
+        2.React Dom - Which contains features that specific to  webites.
+    1. We can load React External Library using scirpt element in HTML.
+        like <scirpt src="https://unpkg.com/supersimpledev@8.6.4/react.js"></script>
+    2. We can load ReactDOM External Library using script element in HTML
+        like <scirpt src="https://unpkg.com/supersimpledev@8.6.4/react-dom.js"></script>
+    In additionaly we loaded the another library called Babel.js 
+        like <script src="https://unpkg.com/supersimpledev@8.6.4/babel.js"></script>
+        -> The babel is an External library. That is used for Compailing the React Codes.
+
+How to setup React ?
+    <script type="text/babel">
+        const container=document.querySelector('.js-container');
+        ReactDOM.createRoot(container).render("Welcome to React Course");
+    </script>
+    These two lines are used to setup the React.
+        The line 1: const container=document.querySelector('.js-container');
+            To get an HTML element from the webite and put it into an JavaScript file.
+            This is an feature of JavaScript called DOM(Document Object Model).
+        The line 2: ReactDOM.createRoot(container).render("Welcome to React Course");
+            This is basically setsup React
+
+Here is an Final Full HTML file to Have Complete React :-
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>React Basics</title>
+    </head>
+    <body>
+        <div class="js-container"></div>
+
+        <script src="https://unpkg.com/supersimpledev/react.js"></script>
+        <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+        <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+        <script type="text/babel">
+        const container = document.querySelector('.js-container');
+        ReactDOM.createRoot(container).render('Welcome to React Course');
+        </script>
+    </body>
+    </html>
+
+        
