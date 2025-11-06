@@ -10,16 +10,47 @@
 
     <script src="https://unpkg.com/supersimpledev@8.6.4/react.js"></script> <!-- to load react from the out website-->
     <script src="https://unpkg.com/supersimpledev@8.6.4/react-dom.js"></script> <!-- to load reactDom from the out website-->
+    <script src="https://unpkg.com/supersimpledev@8.6.4/chatbot.js"></script>
     <script src="https://unpkg.com/supersimpledev@8.6.4/babel.js"></script><!-- to load react babel compiler from the out website-->
     <script src="https://unpkg.com/supersimpledev@8.6.4/dayjs.js"></script><!-- to load react can use with days and time-->
     <script type="text/babel">
-        const container=document.querySelector('.js-container'); {/* To select the Div Elemenet from the html page*/}
-        function ChatInput() // This is an component example in React without props
+        const container=document.querySelector('.js-container'); //To select the Div Elemenet from the html page
+        function ChatInput({chatMessages,setChatMessages}) // This is an component example in React without props
         {
+            const [inputText,setInputText]=React.useState('');
+            function saveInputText(event)
+            {
+                setInputText(event.target.value);
+            }
+            function sendMessage()
+            {
+                const newChatMessages=[
+                    ...chatMessages,
+                    {
+                        message:inputText,
+                        sender:"user",
+                        id:crypto.randomUUID()
+                    }
+                ];
+                setChatMessages(newChatMessages);
+                const response=Chatbot.getResponse(inputText);
+                setChatMessages([
+                    ...newChatMessages,
+                    {
+                        message:response,
+                        sender:'robot',
+                        id:crypto.randomUUID()
+                    }
+                ]);
+                setInputText('');
+            }
             return (
                 <>
-                    <input placeholder="Send a message to Chatbot" size="30"></input>
-                    <button>Send</button>    
+                    <input placeholder="Send a message to Chatbot" size="30"
+                    onChange={saveInputText}
+                    value={inputText}
+                    ></input>
+                    <button onClick={sendMessage}>Send</button>    
                 </>
             );
         }
@@ -59,16 +90,39 @@
            );
             
         }
-        function App()
+        function ChatMessages({chatMessages})
         {
             return(
                 <>
-                <ChatInput />
-                <ChatMessage message="Hello Chatbot" sender="user"/> {/* This is an props object with having feilds message and sender. */}
-                <ChatMessage message="Hello! How can I help you?" sender="robot"/> {/* This is simple example of How can we give props feilds to an component.*/}
-                <ChatMessage message="can you get me a today's date" sender="user"/>
-                <ChatMessage message="Today is November 5" sender="robot"/>
-            </>
+                    {chatMessages.map((chatMessage)=>
+                        {
+                            return(
+                                <ChatMessage 
+                                    message={chatMessage.message} 
+                                    sender={chatMessage.sender}
+                                    key={chatMessage.id}
+                                />
+                            );
+                        })
+                    }
+                </>
+            );
+        }
+        function App()
+        {
+            const [chatMessages,setChatMessages]=React.useState([{id:crypto.randomUUID()}]);
+        // const chatMessages=array[0];
+        // const setChatMessages=array[1];
+            return(
+                <>
+                <ChatInput 
+                    chatMessages={chatMessages}
+                    setChatMessages={setChatMessages}
+                />
+                <ChatMessages 
+                    chatMessages={chatMessages}
+                />
+                </>
             );
         }
         ReactDOM.createRoot(container).render(<App />);
