@@ -1,0 +1,112 @@
+How to Save the data (Using Array and object) in React ?
+    In React you save data inside State.
+    State is the only correct place to store data that should change and re-render UI.
+    Array and Object also can be stored inside State same like string and number.
+
+Example: Saving data using Array inside State
+    function App() {
+        const [students, setStudents] = React.useState(["Sandeep", "Ravi"]);
+
+        function addStudent() {
+            setStudents([...students, "Kumar"]); // spread operator used to add new value
+        }
+
+        return (
+            <>
+            <button onClick={addStudent}>Add Student</button>
+            {students.map((stu) => <div>{stu}</div>)}
+            </>
+        );
+    }
+
+Note Important Point:
+    ->You never modify array directly (students.push).
+    ->You always create new array and update state.
+
+Example: Saving data using Object inside State
+    function StudentDetails() {
+        const [student, setStudent] = React.useState({
+            name: "Sandeep",
+            dept: "Computer Technology",
+            year: 3
+        });
+
+        function updateDept() {
+            setStudent({
+            ...student,
+            dept: "IT"   // update only one value in object
+            });
+        }
+
+        return (
+            <>
+            <h3>{student.name}</h3>
+            <h4>{student.dept}</h4>
+            <button onClick={updateDept}>Change Department</button>
+            </>
+        );
+    }
+
+Here also again we do not modify object directly.
+We use ...student spread and then change specific key.
+
+Main Rules
+    What you save	Example
+    String	        "Hello"
+    Number	         10
+    Array	         []
+    Object	         {}
+
+React can store anything inside state.
+But always update using setState function (never edit directly).
+
+In short answer (Interview type):
+    In React, data is saved using State. We can store array or object 
+in state and update using the setter method. We must always create new 
+array/object using spread operator and then update it, because React state 
+is immutable.
+
+What is State in React?
+    State is a special built-in React feature that stores data 
+that can change over time and affects what gets displayed on the screen.
+    Whenever state changes 
+        → React automatically re-renders the component with the latest updated data.
+
+Simple Definition :-
+    ->State is a way to store dynamic data in a React component. 
+    ->When the state updates, the UI updates automatically.
+
+Why State is needed?
+    Because in websites data changes often:
+    user typing value
+    clicking button
+    toggling dark mode
+    storing form input
+    adding messages (chat)
+    increasing score in game
+    State helps React track these values.
+
+Syntax
+    const [stateName, setStateName] = React.useState(initialValue);
+
+Part	        Meaning
+stateName	    variable that stores current value
+setStateName	function used to update state
+initialValue	default starting value
+
+Example
+    function Counter() {
+    const [count, setCount] = React.useState(0);
+
+    function increase() {
+        setCount(count + 1); // updating state
+    }
+
+    return (
+        <>
+        <h1>{count}</h1>
+        <button onClick={increase}>Increase</button>
+        </>
+    );
+    }
+When button is clicked → setCount() changes state → UI updates automatically.
