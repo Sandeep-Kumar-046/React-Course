@@ -182,11 +182,7 @@
                 );
             }
             */
-           if (!message) return (
-            <p className="welcome-message">
-                         Welcome to the chatbot project! Send a message using the textbox below.
-                        </p>
-           );
+           if (!message) return (null);
            return( // This return Statement is an short-cut for above if-else statement 
                 <div
                     className={
@@ -232,11 +228,15 @@
         }
         function App()
         {
-            const [chatMessages,setChatMessages]=React.useState([{id:crypto.randomUUID()}]);
-        // const chatMessages=array[0];
+            const [chatMessages, setChatMessages] = React.useState([]);        // const chatMessages=array[0];
         // const setChatMessages=array[1];
             return(
                 <div className="app-container">
+                     {chatMessages.length === 0 && (
+                    <p className="welcome-message">
+                        Welcome to the chatbot project! Send a message using the textbox below.
+                    </p>
+                    )}
                 <ChatMessages 
                     chatMessages={chatMessages}
                 />
