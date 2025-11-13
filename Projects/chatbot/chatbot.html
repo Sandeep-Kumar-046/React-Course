@@ -70,6 +70,14 @@
             overflow: scroll;
             scrollbar-width:none ;
         }
+        .welcome-message {
+        color: rgb(120, 120, 120);
+        text-align: center;
+        }
+        .loading-image{
+            height: 40px;
+            margin: -15px;
+        }
     </style>
 </head>
 <body>
@@ -107,7 +115,7 @@
                         id:crypto.randomUUID()
                     },
                     {
-                        message: 'Loading...',
+                        message: <img src="loading-spinner.gif" className="loading-image"/>,
                         sender: 'robot',
                         id: crypto.randomUUID()
                     }
@@ -178,7 +186,7 @@
                 );
             }
             */
-           if (!message) return null;
+           if (!message) return (null);
            return( // This return Statement is an short-cut for above if-else statement 
                 <div
                     className={
@@ -195,16 +203,28 @@
            );
             
         }
-        function ChatMessages({chatMessages})
-        {
-            const chatMessagesRef=React.useRef(null);
+              // To use a function as a hook, the function name must
+      // start with "use".
+      function useAutoScroll(dependencies) {
+        // It's highly recommend to rename this to something
+        // more generic like containerRef. This will make the
+        // code make more sense if we ever reuse this code in
+        // other components.
+        const containerRef = React.useRef(null);
             React.useEffect(()=>{
-                const containerElem=chatMessagesRef.current;
+                const containerElem = containerRef.current;
                 if(containerElem)
                 {
                     containerElem.scrollTop = containerElem.scrollHeight;
                 }
-            },[chatMessages]);
+                    }, dependencies);
+
+            return containerRef;
+        }
+
+      function ChatMessages({ chatMessages }) {
+        const chatMessagesRef = useAutoScroll([chatMessages]);
+
             return(
                 <div className="chat-messages-container" 
                 ref={chatMessagesRef}>
@@ -224,11 +244,15 @@
         }
         function App()
         {
-            const [chatMessages,setChatMessages]=React.useState([{id:crypto.randomUUID()}]);
-        // const chatMessages=array[0];
+            const [chatMessages, setChatMessages] = React.useState([]);        // const chatMessages=array[0];
         // const setChatMessages=array[1];
             return(
                 <div className="app-container">
+                     {chatMessages.length === 0 && (
+                    <p className="welcome-message">
+                        Welcome to the chatbot project! Send a message using the textbox below.
+                    </p>
+                    )}
                 <ChatMessages 
                     chatMessages={chatMessages}
                 />
@@ -237,7 +261,6 @@
                     setChatMessages={setChatMessages}
                 />
                 </div>
-                
             );
         }
         ReactDOM.createRoot(container).render(<App />);
