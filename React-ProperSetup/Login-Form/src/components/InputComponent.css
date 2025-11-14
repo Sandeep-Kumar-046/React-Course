@@ -1,0 +1,21 @@
+.input-container input{
+    margin-bottom: 5px;
+    border-width: 1px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+input:focus{
+    border-color: rgb(0, 123, 255);
+    outline: none;
+}
+.password-option-button{
+    background-color: rgb(0, 123, 255);
+    border: none;
+    margin-right: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
