@@ -14,8 +14,11 @@ import './App.css'
           }
         })
     },[]);
-    const [chatMessages, setChatMessages] = useState([]);        // const chatMessages=array[0];
+    const [chatMessages, setChatMessages] = useState(JSON.parse(localStorage.getItem('messages')) || []);        // const chatMessages=array[0];
     // const setChatMessages=array[1];
+    useEffect(() => {
+    localStorage.setItem('messages', JSON.stringify(chatMessages));
+    }, [chatMessages]);
     return(
         <div className="app-container">
               {chatMessages.length === 0 && (
