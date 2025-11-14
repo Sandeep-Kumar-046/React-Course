@@ -1,0 +1,3 @@
+rmdir test2 test3   # We can remove multiple folders at once.
+cd ..
+rmdir test1
