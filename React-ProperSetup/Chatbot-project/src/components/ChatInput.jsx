@@ -60,6 +60,10 @@ function ChatInput({chatMessages,setChatMessages}) // This is an component examp
             setInputText('');
         }
     }
+    function ClearMessages()
+    {
+        setChatMessages([]);
+    }
     return (
         <div className="chat-input-container">
             <input placeholder="Send a message to Chatbot" size="30"
@@ -70,7 +74,8 @@ function ChatInput({chatMessages,setChatMessages}) // This is an component examp
             ></input>
             <button 
                 onClick={sendMessage}
-                className="send-button">Send</button>    
+                className="send-button">Send</button>  
+            <button onClick={ClearMessages} className="clear-messages">Clear</button>  
         </div>
     );
 }
