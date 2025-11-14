@@ -1,6 +1,7 @@
 import { useState} from "react";
 import { Chatbot } from "supersimpledev";
 import LoadingImage from '../assets/loading-spinner.gif'
+import dayjs from 'dayjs';
 import './ChatInput.css';
 
 function ChatInput({chatMessages,setChatMessages}) // This is an component example in React without props
@@ -25,7 +26,8 @@ function ChatInput({chatMessages,setChatMessages}) // This is an component examp
             {
                 message:inputText,
                 sender:"user",
-                id:crypto.randomUUID()
+                id: crypto.randomUUID(),
+                time: dayjs().valueOf()
             },
             {
                 message: <img src={LoadingImage} className="loading-image"/>,
@@ -41,7 +43,8 @@ function ChatInput({chatMessages,setChatMessages}) // This is an component examp
             {
                 message:response,
                 sender:'robot',
-                id:crypto.randomUUID()
+                id:crypto.randomUUID(),
+                time: dayjs().valueOf()
             },
         ]);
         setInputText('');

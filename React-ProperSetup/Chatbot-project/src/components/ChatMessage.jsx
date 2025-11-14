@@ -1,10 +1,9 @@
 import RobotProfileImage from '../assets/robot.png'
 import UserProfileImage from '../assets/profile-1.jpg'
 import './ChatMessage.css';
-function ChatMessage(props) // This is an simple example 'Component with props'. Props Make the Component More reuseable.  
+import dayjs from 'dayjs';
+function ChatMessage({ message, sender, time }) // This is an simple example 'Component with props'. Props Make the Component More reuseable.  
 {
-    const {message}=props; // same as 'cosnt message = props.message'
-    const {sender}=props;  // This Feature is called Destructuring
     if (!message) return (null);
     return( // This return Statement is an short-cut for above if-else statement 
         <div
@@ -15,7 +14,12 @@ function ChatMessage(props) // This is an simple example 'Component with props'.
             {
                 sender === 'robot' && <img src={RobotProfileImage} className="chat-message-profile"/>}
             <div className="chat-message-text">
-                {message}     
+                {message}
+                {time && (
+                    <div className='chat-message-time'>
+                    {dayjs(time).format('h:mma')}
+                    </div>
+                )}
             </div>
             {sender === 'user' && <img src={UserProfileImage} className="chat-message-profile"/>}    
         </div>
