@@ -1,5 +1,6 @@
 import {useRef,useEffect } from 'react'
 import ChatMessage from './ChatMessage';
+import './ChatMessages.css';
 function useAutoScroll([dep]) {
     const containerRef = useRef(null);
       useEffect(()=>{

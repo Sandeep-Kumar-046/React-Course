@@ -1,7 +1,7 @@
 import { useState} from "react";
 import { Chatbot } from "supersimpledev";
 import LoadingImage from '../assets/loading-spinner.gif'
-
+import './ChatInput.css';
 
 function ChatInput({chatMessages,setChatMessages}) // This is an component example in React without props
 {
