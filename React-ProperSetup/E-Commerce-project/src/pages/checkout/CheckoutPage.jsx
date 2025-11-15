@@ -5,6 +5,8 @@ export function CheckoutPage()
 {
     return(
         <>
+            <title>Checkout Page</title>
+            <link rel="icon" href="home-favicon.png" />
             <CheckoutHeader></CheckoutHeader>
                 <div className="checkout-page">
                     <div className="page-title">Review your order</div>
