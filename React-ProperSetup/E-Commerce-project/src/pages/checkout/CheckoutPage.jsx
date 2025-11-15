@@ -1,6 +1,6 @@
 import './CheckoutPage.css';
 import { CheckoutHeader } from './CheckoutHeader';
-import HomePage from './HomePage';
+import HomePage from '../HomePage';
 export function CheckoutPage()
 {
     return(
