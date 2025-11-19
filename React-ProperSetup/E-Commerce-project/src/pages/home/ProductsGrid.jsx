@@ -6,7 +6,7 @@ export function ProductGrid({products}) {
             {
                 products.map((products) => {
                     return (
-                        <ProductContainer products={products}/>
+                        <ProductContainer products={products} key={products.id}/>
                     );
                 })
             }

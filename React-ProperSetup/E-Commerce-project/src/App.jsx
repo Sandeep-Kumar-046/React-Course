@@ -12,15 +12,19 @@ function App() {
   const [deliveryOptions, setDeliveryOption] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
   useEffect(() => {
-    axios.get(('/api/delivery-options?expand=estimatedDeliveryTime'))
-      .then((response) => {
-        setDeliveryOption(response.data);
-      });
-    axios.get(('/api/payment-summary'))
-      .then((response) => {
-        setPaymentSummary(response.data);
-      });
+    const getDeliveryData = async () => {
+      const response = await axios.get(('/api/delivery-options?expand=estimatedDeliveryTime'))
+      setDeliveryOption(response.data);
+    }
+    getDeliveryData();
+    const getPayemntSummary = async() => {
+      const response = await axios.get(('/api/payment-summary'))
+      setPaymentSummary(response.data);
+    }
+    getPayemntSummary();
   }, []);
+
+
   const [cart, setCart] = useState([]);
   useEffect(() => {
     axios.get('/api/cart-items?expand=product')
@@ -32,13 +36,13 @@ function App() {
     <>
       <Routes>
         <Route index element={<HomePage cart={cart} />} />
-        <Route path="checkout" element={<CheckoutPage 
-          cart={cart} 
+        <Route path="checkout" element={<CheckoutPage
+          cart={cart}
           deliveryOptions={deliveryOptions}
-          paymentSummary={paymentSummary} 
-          />} />
+          paymentSummary={paymentSummary}
+        />} />
         <Route path="orders" element={<OrdersPage cart={cart} />} />
-        <Route path="tracking-page" element={<TrackingPage cart={cart}/>} />
+        <Route path="tracking-page" element={<TrackingPage cart={cart} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
