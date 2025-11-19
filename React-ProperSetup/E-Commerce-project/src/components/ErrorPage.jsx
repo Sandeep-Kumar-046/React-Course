@@ -1,11 +1,11 @@
 import './ErrorPage.css';
 import { Header } from "./Header";
-export function ErrorPage()
+export function ErrorPage({cart})
 {
     return (
         <>
             <title>Page not found</title>
-            <Header/>
+            <Header cart={cart}/>
             <div className="container">
                 <h1 className="error-message">404</h1>
                 <p>

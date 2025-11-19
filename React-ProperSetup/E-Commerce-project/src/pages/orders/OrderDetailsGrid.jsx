@@ -4,6 +4,7 @@ import {Link} from 'react-router';
 export function OrderDetailsGrid({order}) {
     return (
         <div className="order-details-grid">
+            {/* {console.log(order)} */}
             {order.products.map((orderProduct) => {
                 return (
                     <Fragment key={orderProduct.product.id}>
@@ -28,7 +29,7 @@ export function OrderDetailsGrid({order}) {
                         </div>
 
                         <div className="product-actions">
-                            <Link to="/tracking-page">
+                            <Link to={`/tracking-page/${order.id}/${orderProduct.productId}`}>
                                 <button className="track-package-button button-secondary">
                                     Track package
                                 </button>

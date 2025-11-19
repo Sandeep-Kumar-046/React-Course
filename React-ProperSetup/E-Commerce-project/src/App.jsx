@@ -42,8 +42,8 @@ function App() {
           paymentSummary={paymentSummary}
         />} />
         <Route path="orders" element={<OrdersPage cart={cart} />} />
-        <Route path="tracking-page" element={<TrackingPage cart={cart} />} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="tracking-page/:orderId/:productId" element={<TrackingPage cart={cart} />} />
+        <Route path="*" element={<ErrorPage cart={cart} />} />
       </Routes>
     </>
   )
