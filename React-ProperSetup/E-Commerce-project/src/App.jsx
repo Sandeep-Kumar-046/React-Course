@@ -7,7 +7,7 @@ import { ErrorPage } from './components/ErrorPage';
 import { useState, useEffect } from 'react';
 import './App.css';
 import { Routes, Route } from 'react-router';
-
+window.axios = axios;
 function App() {
   const [deliveryOptions, setDeliveryOption] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
@@ -44,7 +44,7 @@ function App() {
           paymentSummary={paymentSummary}
           loadCart={loadCart}
         />} />
-        <Route path="orders" element={<OrdersPage cart={cart} />} />
+        <Route path="orders" element={<OrdersPage cart={cart} loadCart={loadCart} />} />
         <Route path="tracking-page/:orderId/:productId" element={<TrackingPage cart={cart} />} />
         <Route path="*" element={<ErrorPage cart={cart} />} />
       </Routes>
