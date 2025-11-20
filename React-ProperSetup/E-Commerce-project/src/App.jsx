@@ -11,6 +11,14 @@ import { Routes, Route } from 'react-router';
 function App() {
   const [deliveryOptions, setDeliveryOption] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
+  const [cart, setCart] = useState([]);
+  const loadCart = async () =>{
+    const response=await axios.get('/api/cart-items?expand=product');
+    setCart(response.data);
+  }
+  useEffect(() => {
+    loadCart();
+  }, []);
   useEffect(() => {
     const getDeliveryData = async () => {
       const response = await axios.get(('/api/delivery-options?expand=estimatedDeliveryTime'))
@@ -22,17 +30,10 @@ function App() {
       setPaymentSummary(response.data);
     }
     getPayemntSummary();
-  }, []);
+  }, [cart]);
 
 
-  const [cart, setCart] = useState([]);
-  const loadCart = async () =>{
-    const response=await axios.get('/api/cart-items?expand=product');
-    setCart(response.data);
-  }
-  useEffect(() => {
-    loadCart();
-  }, []);
+  
   return (
     <>
       <Routes>
@@ -41,6 +42,7 @@ function App() {
           cart={cart}
           deliveryOptions={deliveryOptions}
           paymentSummary={paymentSummary}
+          loadCart={loadCart}
         />} />
         <Route path="orders" element={<OrdersPage cart={cart} />} />
         <Route path="tracking-page/:orderId/:productId" element={<TrackingPage cart={cart} />} />

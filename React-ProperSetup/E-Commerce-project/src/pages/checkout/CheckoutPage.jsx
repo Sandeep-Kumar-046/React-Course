@@ -1,7 +1,7 @@
 import './CheckoutPage.css';
 import { CheckoutHeader } from './CheckoutHeader';
 import { CheckoutGrid } from './CheckoutGrid';
-export function CheckoutPage({ cart, deliveryOptions, paymentSummary, }) {
+export function CheckoutPage({ cart, deliveryOptions, paymentSummary,loadCart}) {
     return (
         <>
             <title>Checkout Page</title>
@@ -13,6 +13,7 @@ export function CheckoutPage({ cart, deliveryOptions, paymentSummary, }) {
                     cart={cart}
                     deliveryOptions={deliveryOptions}
                     paymentSummary={paymentSummary}
+                    loadCart={loadCart}
                 />
             </div>
         </>
