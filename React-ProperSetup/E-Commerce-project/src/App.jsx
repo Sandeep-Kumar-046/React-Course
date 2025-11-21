@@ -12,10 +12,12 @@ function App() {
   const [deliveryOptions, setDeliveryOption] = useState([]);
   const [paymentSummary, setPaymentSummary] = useState(null);
   const [cart, setCart] = useState([]);
-  const loadCart = async () =>{
-    const response=await axios.get('/api/cart-items?expand=product');
-    setCart(response.data);
-  }
+  async function loadCart() {
+  const res = await axios.get('/api/cart-items?expand=product');
+  setCart(res.data);
+  return res.data;
+}
+
   useEffect(() => {
     loadCart();
   }, []);
